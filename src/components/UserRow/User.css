@@ -1,0 +1,24 @@
+.inp-readonly {
+	border: none;
+	padding: 5px;
+	border-radius: 10px;
+}
+.inp-readonly:focus {
+	outline: none;
+}
+.inp-act {
+	padding: 5px;
+}
+.delete-icon {
+	color: #ff3535;
+}
+.icons-row > i {
+	cursor: pointer;
+	padding: 0 8px;
+}
+.select-row {
+	background-color: #f3f1f5;
+}
+.select-row input {
+	background-color: #f3f1f5;
+}

@@ -1,0 +1,56 @@
+.bottom-nav {
+	width: 90vw;
+	margin: auto;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+.delete-btn {
+	border: none;
+	color: white;
+	background-color: #ff5171;
+	padding: 10px 15px;
+	border-radius: 20px;
+}
+.pagination {
+	margin-left: 10rem;
+	text-align: center;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	width: 60vw;
+	justify-content: space-evenly;
+}
+
+.page-item {
+	cursor: pointer;
+	height: fit-content;
+	padding: 14px;
+	border-radius: 50%;
+	color: white;
+	border: none;
+	background-color: rgb(24, 144, 255);
+}
+.page-item-act {
+	color: rgb(24, 144, 255);
+	border: 1px solid rgb(24, 144, 255) !important;
+	background-color: white;
+}
+
+.arrow {
+	height: fit-content;
+	border-radius: 50%;
+	font-size: 24px;
+	cursor: pointer;
+	padding: 10px;
+}
+
+.left-arrow {
+	color: #d0d0d0;
+	border: #d0d0d0;
+	background-color: #f5f5f5;
+}
+.right-arrow {
+	color: white;
+	background-color: rgb(24, 144, 255);
+}
