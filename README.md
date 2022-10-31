@@ -14,4 +14,8 @@ Note - this is for reference only. You don't need to build the exact same UI.
 6. Checkbox on the top left is a shortcut to select or deselect all displayed rows. This should only apply to the ten rows displayed in the current page, and not all 50 rows.
 
 ### Solution
+<<<<<<< HEAD
 [Check here](https://anirudh-adminui.netlify.app/)
+=======
+[Check here](https://anirudh-adminui.netlify.app/)
+>>>>>>> 37a853cd0bf4d671ea79f19b1dd94cf3ea788a3d

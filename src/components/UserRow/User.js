@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import "./User.css";
+<<<<<<< HEAD
 import { useSnackbar } from "notistack";
+=======
+>>>>>>> 37a853cd0bf4d671ea79f19b1dd94cf3ea788a3d
 
 const User = ({
 	user,
@@ -8,17 +11,24 @@ const User = ({
 	handleSave,
 	selectedUsers,
 	handleSelect,
+<<<<<<< HEAD
 	validateEdit,
+=======
+>>>>>>> 37a853cd0bf4d671ea79f19b1dd94cf3ea788a3d
 }) => {
 	//To store selected row data
 	const [isEdit, setEdit] = useState(false);
 	const [saveData, setSaveData] = useState(user);
+<<<<<<< HEAD
 	const { enqueueSnackbar } = useSnackbar();
+=======
+>>>>>>> 37a853cd0bf4d671ea79f19b1dd94cf3ea788a3d
 
 	const handleNewData = (e) => {
 		setSaveData({ ...saveData, [e.target.name]: e.target.value });
 	};
 
+<<<<<<< HEAD
 	const handleSaveCheck = () => {
 		const res = validateEdit(saveData);
 		if (res) {
@@ -28,6 +38,8 @@ const User = ({
 		}
 	};
 
+=======
+>>>>>>> 37a853cd0bf4d671ea79f19b1dd94cf3ea788a3d
 	return (
 		<tr
 			className={
@@ -76,7 +88,12 @@ const User = ({
 					<i
 						className="fas fa-save"
 						onClick={() => {
+<<<<<<< HEAD
 							handleSaveCheck();
+=======
+							setEdit(!isEdit);
+							handleSave(saveData, user.id);
+>>>>>>> 37a853cd0bf4d671ea79f19b1dd94cf3ea788a3d
 						}}
 					></i>
 				) : (
