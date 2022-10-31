@@ -1,4 +1,4 @@
-const performSearch = (input, data, setpage) => {
+const performSearch = (input, data) => {
 	if (input === "") {
 		return data;
 	} else {
@@ -12,9 +12,6 @@ const performSearch = (input, data, setpage) => {
 				return user;
 			}
 		});
-		if (res.length) {
-			setpage(1);
-		}
 
 		return res;
 	}

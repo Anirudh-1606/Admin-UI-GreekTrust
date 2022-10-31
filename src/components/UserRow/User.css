@@ -6,6 +6,9 @@
 .inp-readonly:focus {
 	outline: none;
 }
+input {
+	background-color: inherit;
+}
 .inp-act {
 	padding: 5px;
 }

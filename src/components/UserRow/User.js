@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./User.css";
+import { useSnackbar } from "notistack";
 
 const User = ({
 	user,
@@ -7,13 +8,24 @@ const User = ({
 	handleSave,
 	selectedUsers,
 	handleSelect,
+	validateEdit,
 }) => {
 	//To store selected row data
 	const [isEdit, setEdit] = useState(false);
 	const [saveData, setSaveData] = useState(user);
+	const { enqueueSnackbar } = useSnackbar();
 
 	const handleNewData = (e) => {
 		setSaveData({ ...saveData, [e.target.name]: e.target.value });
+	};
+
+	const handleSaveCheck = () => {
+		const res = validateEdit(saveData);
+		if (res) {
+			enqueueSnackbar("Saved", { variant: "success" });
+			setEdit(!isEdit);
+			handleSave(saveData, user.id);
+		}
 	};
 
 	return (
@@ -64,8 +76,7 @@ const User = ({
 					<i
 						className="fas fa-save"
 						onClick={() => {
-							setEdit(!isEdit);
-							handleSave(saveData, user.id);
+							handleSaveCheck();
 						}}
 					></i>
 				) : (

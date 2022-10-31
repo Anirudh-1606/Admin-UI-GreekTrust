@@ -36,43 +36,44 @@ const Pages = ({
 
 	return (
 		<div>
-			{pageNumbers.length && (
-				<div className="bottom-nav">
-					<button onClick={handleAllDelete} className="delete-btn">
-						Delete Selected
-					</button>
-					<nav>
-						<div className="pagination">
-							<i
-								className="fas fa-duotone fa-angles-left left-arrow arrow"
-								onClick={handleFirstPage}
-							></i>
-							<i
-								className="fas fa-duotone fa-angle-left left-arrow arrow"
-								onClick={handlePrevPage}
-							></i>
-							{pageNumbers.map((num) => (
-								<button
-									key={num}
-									className={
-										page === num ? "page-item-act page-item" : "page-item"
-									}
-									onClick={() => handlePaginate(num)}
-									starclassName="page-link"
-								>
-									{num}
-								</button>
-							))}
-							<i
-								className="fas fa-duotone fa-angle-right right-arrow arrow"
-								onClick={handleNextPage}
-							></i>
-							<i
-								className="fas fa-duotone fa-angles-right right-arrow arrow"
-								onClick={handleLastPage}
-							></i>
-						</div>
-					</nav>
+			{dataLength > 1 && (
+				<div className=" pt-2 pt-md-0 row">
+					<div className=" col-md-4 col-12">
+						<button onClick={handleAllDelete} className="delete-btn">
+							Delete Selected
+						</button>
+					</div>
+
+					<div className="pagination col-md-8 col-12 mt-1">
+						<i
+							className="fas fa-duotone fa-angles-left left-arrow arrow"
+							onClick={handleFirstPage}
+						></i>
+						<i
+							className="fas fa-duotone fa-angle-left left-arrow arrow"
+							onClick={handlePrevPage}
+						></i>
+						{pageNumbers.map((num) => (
+							<button
+								key={num}
+								className={
+									page === num ? "page-item-act page-item" : "page-item"
+								}
+								onClick={() => handlePaginate(num)}
+								starclassName="page-link"
+							>
+								{num}
+							</button>
+						))}
+						<i
+							className="fas fa-duotone fa-angle-right right-arrow arrow"
+							onClick={handleNextPage}
+						></i>
+						<i
+							className="fas fa-duotone fa-angles-right right-arrow arrow"
+							onClick={handleLastPage}
+						></i>
+					</div>
 				</div>
 			)}
 		</div>

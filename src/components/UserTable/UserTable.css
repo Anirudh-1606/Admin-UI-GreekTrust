@@ -1,18 +1,3 @@
-.table-container {
-	height: 80vh;
-}
-.table {
-	width: 90vw;
-	margin: auto;
-	border-collapse: collapse;
-	table-layout: fixed;
-}
-
-.table tr {
-	border-bottom: 1px solid #e2e2e2;
-	text-align: left;
-	height: 7vh;
-}
 .no-user {
 	text-align: center;
 	color: grey;

@@ -5,7 +5,7 @@ import UserTable from "./components/UserTable/UserTable";
 import onLoad from "./services/OnLoad";
 import performSearch from "./services/OnSearch";
 import config from "./constants";
-
+import { useSnackbar } from "notistack";
 import Pages from "./components/Pagination/Pages";
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
 	const [filteredData, setFilteredData] = useState([]);
 	const [page, setPage] = useState(1);
 	const [selectedUsers, setSelectedUsers] = useState([]);
-
+	const { enqueueSnackbar } = useSnackbar();
 	//-------------------------------------------------------------------------------------------------------------------------------------
 	//Intializing Onload Services
 	useEffect(() => {
@@ -28,7 +28,9 @@ function App() {
 	//-------------------------------------------------------------------------------------------------------------------------------------
 	//Handling Search Service
 	const handleSearch = (text) => {
-		setFilteredData(performSearch(text, data, setPage));
+		const res = performSearch(text, data);
+		console.log("search->", res, data);
+		setFilteredData(res);
 	};
 
 	//-------------------------------------------------------------------------------------------------------------------------------------
@@ -54,31 +56,53 @@ function App() {
 	//-------------------------------------------------------------------------------------------------------------------------------------
 	//User Row functionalities
 	const handleDelete = (id) => {
+		window.confirm("Are you sure, you want to delete this? ");
 		const newData = filteredData.filter((ele) => ele.id !== id);
+		const newOriData = data.filter((ele) => ele.id !== id);
 		setFilteredData(newData);
-		setData(newData);
+		setData(newOriData);
 	};
 
 	const handleAllDelete = () => {
+		if (selectedUsers.length) {
+			window.confirm("Are you sure, you want to delete selected users? ");
+		}
+
 		const response = filteredData.filter((user) => {
 			return !selectedUsers.includes(user);
 		});
+		const oriResponse = data.filter((user) => {
+			return !selectedUsers.includes(user);
+		});
 		setFilteredData(response);
-		setData(response);
+		setData(oriResponse);
 		setSelectedUsers([]);
 	};
 
 	const handleSave = (userData, id) => {
-		const newData = filteredData.map((user) => {
-			if (user.id === id) {
-				return userData;
-			}
-			return user;
-		});
-		setFilteredData(newData);
-		setData(newData);
+		const index = filteredData.findIndex((user) => user.id === id);
+		const oriInd = data.findIndex((user) => user.id === id);
+
+		filteredData[index] = userData;
+		data[oriInd] = userData;
 	};
 
+	const validateEdit = (user) => {
+		if (user.name === "" && user.email === "" && user.role === "") {
+			enqueueSnackbar("Please enter all the fields", { variant: "error" });
+			return false;
+		} else if (user.name === "") {
+			enqueueSnackbar("Please enter the name field", { variant: "error" });
+			return false;
+		} else if (user.email === "") {
+			enqueueSnackbar("Please enter the email field", { variant: "error" });
+			return false;
+		} else if (user.role === "") {
+			enqueueSnackbar("Please enter the role field", { variant: "error" });
+			return false;
+		}
+		return true;
+	};
 	//-------------------------------------------------------------------------------------------------------------------------------------
 	//paging;
 	const end = page * config.pageSize;
@@ -89,7 +113,7 @@ function App() {
 
 	//-------------------------------------------------------------------------------------------------------------------------------------
 	return (
-		<div className="App">
+		<div className="container">
 			<Search handleSearch={handleSearch} />
 			<UserTable
 				data={pageData}
@@ -98,6 +122,7 @@ function App() {
 				handleDelete={handleDelete}
 				handleSave={handleSave}
 				handleSelect={handleSelect}
+				validateEdit={validateEdit}
 			/>
 			<Pages
 				handlePaginate={handlePage}

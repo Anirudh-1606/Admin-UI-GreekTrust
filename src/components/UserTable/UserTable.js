@@ -1,7 +1,7 @@
 import React from "react";
 import "./UserTable.css";
 import User from "../UserRow/User";
-import config from "../../constants";
+import Table from "react-bootstrap/Table";
 const UserTable = ({
 	data,
 	handleAllSelect,
@@ -9,20 +9,19 @@ const UserTable = ({
 	handleDelete,
 	handleSave,
 	handleSelect,
+	validateEdit,
 }) => {
 	return (
-		<div className="table-container">
+		<div>
 			{data.length ? (
-				<table className="table">
+				<Table responsive className="table-hover">
 					<thead>
 						<tr>
 							<th>
 								<input
 									type="checkbox"
 									onChange={handleAllSelect}
-									checked={
-										selectedUsers.length === config.pageSize ? true : false
-									}
+									checked={selectedUsers.length === data.length ? true : false}
 								/>
 							</th>
 							<th>Name</th>
@@ -42,11 +41,12 @@ const UserTable = ({
 										handleSave={handleSave}
 										selectedUsers={selectedUsers}
 										handleSelect={handleSelect}
+										validateEdit={validateEdit}
 									/>
 								);
 							})}
 					</tbody>
-				</table>
+				</Table>
 			) : (
 				<h3 className="no-user">No Users</h3>
 			)}
