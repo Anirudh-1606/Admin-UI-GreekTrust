@@ -36,7 +36,7 @@ const Pages = ({
 
 	return (
 		<div>
-			{dataLength > 1 && (
+			{dataLength > 0 && (
 				<div className=" pt-2 pt-md-0 row">
 					<div className=" col-md-4 col-12">
 						<button onClick={handleAllDelete} className="delete-btn">
